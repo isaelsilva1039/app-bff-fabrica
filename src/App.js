@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Importando as funções de navegação do React Router
+import Menu from './components/Menu'; // Importando o Menu
+import FabricantesPage from './pages/FabricantesPage'; // Página de Fabricantes
+import ProdutoPage from './pages/ProdutoPage'; // Página de Produto
 
 function App() {
+  const [key, setKey] = useState('fabricantes'); // Estado para a tab ativa
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>  {/* Envolvendo a aplicação com BrowserRouter para habilitar as rotas */}
+      {/* Menu de Navegação */}
+      <Menu />
+
+      <div className="container mt-4">
+        <Routes>
+          <Route path="/fabricantes" element={<FabricantesPage />} /> {/* Rota para Fabricantes */}
+          <Route path="/produto" element={<ProdutoPage />} /> {/* Rota para Produto */}
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
