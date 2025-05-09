@@ -33,7 +33,7 @@ function FabricantesPage() {
       try {
         const data = await fetchFabricantes(); 
         setFabricantes(data);
-        setTotalPages(Math.ceil(data.length / itemsPerPage)); // Calcular número total de páginas
+        setTotalPages(Math.ceil(data.length / itemsPerPage));
       } catch (error) {
         console.error('Erro ao buscar os fabricantes:', error);
       }
@@ -99,29 +99,13 @@ function FabricantesPage() {
     setCurrentPage(1); 
   };
 
-  const handleGlobalSearch = (e) => {
-    const value = e.target.value;
 
-    setFilterValues((prevValues) => {
-      const updatedFilters = {};
-      Object.keys(prevValues).forEach((key) => {
-        updatedFilters[key] = value; 
-      });
-      return updatedFilters;
-    });
 
-    Object.keys(filterValues).forEach((columnId) => {
-      setFilter(columnId, value || undefined); 
-    });
-    setCurrentPage(1); 
-  };
-
-  // Lógica de paginação
   const indexOfLastFabricante = currentPage * itemsPerPage;
   const indexOfFirstFabricante = indexOfLastFabricante - itemsPerPage;
   const currentFabricantes = fabricantes.slice(indexOfFirstFabricante, indexOfLastFabricante);
 
-  // Funções de modais de edição e exclusão
+
   const handleRowClick = (fabricante) => {
     setSelectedFabricante(fabricante);
     setShowModal(true); 

@@ -19,6 +19,7 @@ function FabricantesPage() {
     fabricanteNome: '',
   });
 
+
   const [newProduct, setNewProduct] = useState({
     nome: '',
     codigoBarras: '',
@@ -37,7 +38,7 @@ function FabricantesPage() {
       try {
         const data = await fetchProdutos(); 
         setProdutos(data);
-        setTotalPages(Math.ceil(data.length / itemsPerPage)); // Calcular número total de páginas
+        setTotalPages(Math.ceil(data.length / itemsPerPage));
       } catch (error) {
         console.error('Erro ao buscar os produtos:', error);
       }
@@ -115,32 +116,14 @@ function FabricantesPage() {
       setFilter(columnId, filterValues[columnId] || undefined);
     });
     setShowFilters(false); 
-    setCurrentPage(1); // Resetar para a primeira página após aplicar filtros
+    setCurrentPage(1);
   };
 
-  const handleGlobalSearch = (e) => {
-    const value = e.target.value;
 
-    setFilterValues((prevValues) => {
-      const updatedFilters = {};
-      Object.keys(prevValues).forEach((key) => {
-        updatedFilters[key] = value; 
-      });
-      return updatedFilters;
-    });
-
-    Object.keys(filterValues).forEach((columnId) => {
-      setFilter(columnId, value || undefined); 
-    });
-    setCurrentPage(1); // Resetar para a primeira página após busca global
-  };
-
-  // Lógica de paginação
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
   const currentProducts = produtos.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  // Funções de modais de edição e exclusão
   const handleRowClick = (product) => {
     setSelectedProduct(product);
     setShowModal(true); 
@@ -216,7 +199,7 @@ function FabricantesPage() {
     }
   };
 
-  // Alterar a página atual
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -376,7 +359,7 @@ function FabricantesPage() {
         </Modal.Footer>
       </Modal>
 
-      {/* Modal para Novo Produto */}
+
       <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Criar Novo Produto</Modal.Title>

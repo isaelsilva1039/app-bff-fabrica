@@ -1,6 +1,6 @@
 const FABRICANTE_URL = 'http://localhost:8086/api/v1/fabricante';
 
-// Função para buscar os fabricantes
+
 export const fetchFabricantes = async () => {
   try {
     const response = await fetch(FABRICANTE_URL, {
@@ -30,7 +30,7 @@ export const createFabricante = async (fabricanteData) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Cookie': 'JSESSIONID=3052417C9A9128C217D14609AF8FA38C',
+    
       },
       body: JSON.stringify(fabricanteData),
     });
